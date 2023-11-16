@@ -23,5 +23,4 @@ def api(word):
   for item in output:
        texter+=item
   return texter
-if __name__=="__main__":
-    app.run()
+
