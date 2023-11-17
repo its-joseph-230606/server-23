@@ -20,9 +20,12 @@ output = replicate.run(
   )
 texter=""
 for item in output:
-       texter+=item
+       print(item)
+@app.route("/")
+def index():
+  return "home"
 @app.route("/api/<word>")
 def apix(word):
   
-  return texter
+  return "hello"
 
