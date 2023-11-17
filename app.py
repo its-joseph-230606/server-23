@@ -1,12 +1,11 @@
+from flask import Flask
 import replicate
 import os
-from flask import Flask
+
 app = Flask(__name__)
 
 os.environ['REPLICATE_API_TOKEN'] = 'r8_I6byr460oRsgfcmkJELYfHtl9VACL8d1QsffB'
-@app.route("/api/<word>")
-def api(word):
-  output = replicate.run(
+output = replicate.run(
   "meta/llama-2-70b-chat:02e509c789964a7ea8736978a43525956ef40397be9033abf9fd2badfe68c9e3",
   input={
     "debug": False,
@@ -19,8 +18,11 @@ def api(word):
     "min_new_tokens": -1
     }
   )
-  texter=""
-  for item in output:
+texter=""
+for item in output:
        texter+=item
+@app.route("/api/<word>")
+def apix(word):
+  
   return texter
 
