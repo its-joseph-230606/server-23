@@ -1,11 +1,13 @@
 from flask import Flask
 import replicate
-import os
+#import os
 
 app = Flask(__name__)
 
-os.environ['REPLICATE_API_TOKEN'] = 'r8_I6byr460oRsgfcmkJELYfHtl9VACL8d1QsffB'
-output = replicate.run(
+#os.environ['REPLICATE_API_TOKEN'] = 'r8_I6byr460oRsgfcmkJELYfHtl9VACL8d1QsffB'
+@app.route("/"):
+def hi():
+  output = replicate.run(
   "meta/llama-2-70b-chat:02e509c789964a7ea8736978a43525956ef40397be9033abf9fd2badfe68c9e3",
   input={
     "debug": False,
@@ -18,12 +20,8 @@ output = replicate.run(
     "min_new_tokens": -1
     }
   )
-texter=""
-for item in output:
-       print(item)
-@app.route("/")
-def index():
-  return "home"
+  return output
+
 @app.route("/api/<word>")
 def apix(word):
   
